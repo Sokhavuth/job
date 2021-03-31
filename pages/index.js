@@ -10,7 +10,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        Welcome to Learning Website!
+        Welcome to Job Announcement Website!
       </main>
 
       <footer className={styles.footer}>
