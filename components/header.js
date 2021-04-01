@@ -27,7 +27,7 @@ export default function Header(){
             <i class="fa fa-bars"></i>
           </a>
         </div>
-        <div className={style.login} ><Link href='/login'><a>Login</a></Link></div>
+        <div className={style.login} ><Link href='/login'><a>Login</a></Link> | <Link href='/register'><a>Register</a></Link></div>
       </div>
     </div>
   )
