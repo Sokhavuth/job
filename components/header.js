@@ -1,7 +1,5 @@
-import {useState, useEffect} from 'react'
 import style from '../styles/Header.module.scss'
 import Link from 'next/link'
-import $ from 'jquery'
 
 export default function Header(){
   let menuDropdown = false
