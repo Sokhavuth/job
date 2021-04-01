@@ -20,7 +20,7 @@ export default function Header(){
       <div className={`${style.menubar} region`}>
         <div className={style.logo}><Link href='/'><a>Khwebjob</a></Link></div> 
         <div className={`${style.topnav} topnav`} id="topmenu">
-          <Link href=''><a href="#home" className={style.active}>Home</a></Link>
+          <Link href='/'><a className={style.active}>Home</a></Link>
           <a href="#contact">Contact</a>
           <a href="#about">About</a>
           <a href="javascript:void(0);" className={style.icon} onClick={openMobileMenu}>
