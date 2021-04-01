@@ -24,7 +24,7 @@ export default function Header(){
           <a href="#contact">Contact</a>
           <a href="#about">About</a>
           <a href="javascript:void(0);" className={style.icon} onClick={openMobileMenu}>
-            <i class="fa fa-bars"></i>
+            <i className="fa fa-bars"></i>
           </a>
         </div>
         <div className={style.login} ><Link href='/login'><a>Login</a></Link> | <Link href='/register'><a>Register</a></Link></div>

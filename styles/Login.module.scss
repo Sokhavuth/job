@@ -1,0 +1,54 @@
+.Login{
+  .panel{
+    position: relative;
+    img {
+      width: 100%;
+    }
+    .form{
+      width: 400px;
+      background: black;
+      opacity: .7;
+      padding: 20px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: grid;
+      grid-template-columns: 20% auto;
+      grid-gap: 5px;
+      align-items: center;
+      a{
+        text-align: right;
+        color: white;
+      }
+      input{
+        padding: 3px 5px;
+      }
+    }
+  } 
+}
+
+@media only screen and (max-width: 600px){
+  .Login{
+    .panel{
+      .form{
+        width: 350px;
+        grid-template-columns: 25% auto;
+        input{
+          padding: 0 5px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .Login{
+    .panel{
+      height: 272px;
+      img{
+        display: none;
+      }
+    }
+  }
+}

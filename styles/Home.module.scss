@@ -1,0 +1,18 @@
+.Home{
+  .panel{
+    img {
+      width: 100%;
+    }
+  } 
+}
+
+@media only screen and (min-width: 1920px) {
+  .Home{
+    .panel{
+      height: 272px;
+      img{
+        display: none;
+      }
+    }
+  }
+}
