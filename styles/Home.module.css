@@ -1,11 +1,6 @@
-
-.main {
-  padding: 5rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.panel img {
+  width: 100%;
+  float: left;
 }
 
 .footer {
@@ -27,6 +22,11 @@
   align-items: center;
 }
 
-@media (max-width: 600px) {
-  
+@media (min-width: 1920px) {
+  .panel{
+    height: 272px
+  }
+  .panel img{
+    display: none;
+  }
 }
