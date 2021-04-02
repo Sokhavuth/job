@@ -1,8 +1,9 @@
 import { setDbConnection } from '../../tool'
 import mongoose from 'mongoose'
 import bcrypt from 'bcryptjs'
+import { withIronSession } from "next-iron-session"
 
-export default async (req, res) => {
+async function handler(req, res) {
   await setDbConnection()
 
   const usersSchema = new mongoose.Schema({
@@ -22,6 +23,8 @@ export default async (req, res) => {
     var userData = await user.findOne({email: req.body.email})
     if(userData){
       if(bcrypt.compareSync(req.body.password, userData.password)){
+        req.session.set("user", userData)
+        await req.session.save()
         res.status(200).json({data: userData})
       }else{
         res.status(200).json({data: false, message: "The password is wrong."})
@@ -34,3 +37,11 @@ export default async (req, res) => {
     
   }
 }
+
+export default withIronSession(handler, {
+  password: process.env.SESSION_KEY,
+  cookieName: 'logged-in',
+  cookieOptions: {
+    secure: process.env.NODE_ENV === "production",
+  },
+})
