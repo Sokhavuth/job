@@ -2,10 +2,16 @@ import style from '../styles/Login.module.scss'
 import Header from '../components/header'
 import VHead from '../components/head'
 import Footer from '../components/footer'
+import { postFetch } from '../tool'
+import $ from 'jquery'
 
 export default function Login() {
-  const onSubmit = () => {
-    alert()
+  const onSubmitHandler = async (event) => {
+    event.preventDefault()
+    const email = $('#email').val()
+    const password = $('#password').val()
+    const result = await postFetch('/api/user', { email:email, password:password })
+    alert(result.email)
   }
 
   return (
@@ -18,9 +24,9 @@ export default function Login() {
 
       <div className={`${style.panel}`}>
         <img alt='' src='/images/background.jpg' />
-        <form className={style.form} onSubmit={onSubmit}>
-          <a>Email:</a><input type='email' name='email' required />
-          <a>Password:</a><input type='password' name='password' required />
+        <form className={style.form} onSubmit={onSubmitHandler} method='post'>
+          <a>Email:</a><input id='email' type='email' name='email' required />
+          <a>Password:</a><input id='password' type='password' name='password' required />
           <a></a><input type='submit' value='Submit' />
         </form>
       </div>

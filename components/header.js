@@ -23,7 +23,7 @@ export default function Header(){
           <Link href='/'><a className={style.active}>Home</a></Link>
           <a href="#contact">Contact</a>
           <a href="#about">About</a>
-          <a href="javascript:void(0);" className={style.icon} onClick={openMobileMenu}>
+          <a className={style.icon} onClick={openMobileMenu}>
             <i className="fa fa-bars"></i>
           </a>
         </div>
