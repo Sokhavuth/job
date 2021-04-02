@@ -10,8 +10,14 @@ export default function Login() {
     event.preventDefault()
     const email = $('#email').val()
     const password = $('#password').val()
-    const result = await postFetch('/api/user', { email:email, password:password })
-    alert(result.email)
+    const result = await postFetch('/api/login', { email:email, password:password })
+
+    if(result.data){
+      alert(result.data._id)
+    }else{
+      $(`#message`).html(result.message)
+    }
+    
   }
 
   return (
@@ -28,6 +34,7 @@ export default function Login() {
           <a>Email:</a><input id='email' type='email' name='email' required />
           <a>Password:</a><input id='password' type='password' name='password' required />
           <a></a><input type='submit' value='Submit' />
+          <a></a><div className={style.message} id='message'></div>
         </form>
       </div>
 
