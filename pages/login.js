@@ -4,14 +4,30 @@ import VHead from '../components/head'
 import Footer from '../components/footer'
 import { postFetch, getFetch } from '../tool'
 import $ from 'jquery'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Router from 'next/router'
 
 export default  function Login() {
+  const [form, setForm] = useState([])
+
   useEffect( async () => {
     const logged = await getFetch('/api/users/logged')
     if (logged.user.email) {
       Router.push('/dashboard')
+    } else {
+      setForm(
+        form.push(
+          <div className={`${style.panel}`}>
+            <img alt='' src='/images/background.jpg' />
+            <form className={style.form} onSubmit={onSubmitHandler} method='post'>
+              <a>Email:</a><input id='email' type='email' name='email' required />
+              <a>Password:</a><input id='password' type='password' name='password' required />
+              <a></a><input type='submit' value='Submit' />
+              <a></a><div className={style.message} id='message'></div>
+            </form>
+          </div>
+        )
+      )
     }
   })
 
@@ -31,21 +47,13 @@ export default  function Login() {
 
   return (
     <div className={style.Login}>
-      <VHead />
-
+       <VHead />
+    
       <header>
         <Header />
       </header>
 
-      <div className={`${style.panel}`}>
-        <img alt='' src='/images/background.jpg' />
-        <form className={style.form} onSubmit={onSubmitHandler} method='post'>
-          <a>Email:</a><input id='email' type='email' name='email' required />
-          <a>Password:</a><input id='password' type='password' name='password' required />
-          <a></a><input type='submit' value='Submit' />
-          <a></a><div className={style.message} id='message'></div>
-        </form>
-      </div>
+      {form}
 
       <Footer />
     </div>
