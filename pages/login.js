@@ -37,7 +37,7 @@ export default function Login() {
     const password = $('#password').val()
     const result = await postFetch('/api/login', { email:email, password:password })
 
-    if(result.user.email){
+    if(result.user){
       Router.push('/dashboard')
     }else{
       $(`#message`).html(result.message)
