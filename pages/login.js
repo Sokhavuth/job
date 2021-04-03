@@ -7,16 +7,16 @@ import $ from 'jquery'
 import { useState, useEffect } from 'react'
 import Router from 'next/router'
 
-export default  function Login() {
-  const [form, setForm] = useState([])
+export default function Login() {
+  let [form, setForm] = useState('')
 
   useEffect( async () => {
     const logged = await getFetch('/api/users/logged')
-    if (logged.user.email) {
+    if (logged.user) {
       Router.push('/dashboard')
     } else {
       setForm(
-        form.push(
+        form = (
           <div className={`${style.panel}`}>
             <img alt='' src='/images/background.jpg' />
             <form className={style.form} onSubmit={onSubmitHandler} method='post'>
