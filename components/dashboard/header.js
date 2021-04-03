@@ -7,7 +7,7 @@ import Router from 'next/router'
 export default function Header() {
 
   const logout = async () => {
-    await getFetch('/api/users/logout')
+    await fetch('/api/users/logout', { method: "POST" })
     Router.push('/')
   }
 
