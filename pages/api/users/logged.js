@@ -1,7 +1,7 @@
 import { withIronSession } from "next-iron-session"
 
-function handler(req, res, session) {
-  const user = req.session.get("user")
+async function handler(req, res, session) {
+  const user = await req.session.get("user")
   res.json({user: user})
 }
 
