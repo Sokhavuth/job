@@ -27,7 +27,7 @@ export default function Header() {
                   <option>User</option>
                 </select>
                 <input type='search' name='query' />
-                <input type='submit' value='Submit' />
+                <input type='submit' value='Search' />
               </form>
               <div className={style.logout}>
                 <a onClick={logout}>Logout</a>

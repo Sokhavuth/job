@@ -9,7 +9,10 @@
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^27.0.0",
+    "@ckeditor/ckeditor5-react": "^3.0.2",
     "bcryptjs": "^2.4.3",
+    "ckeditor5-custom-build": "file:ckeditor5",
     "jquery": "^3.6.0",
     "mongoose": "^5.12.3",
     "next": "10.1.2",

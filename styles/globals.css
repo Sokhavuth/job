@@ -24,3 +24,7 @@ a:hover{
   max-width: 1200px;
   margin: 0 auto;
 }
+
+.ck-editor__editable {
+  min-height: 360px !important;
+}
