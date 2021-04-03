@@ -25,12 +25,12 @@ async function handler(req, res) {
       if(bcrypt.compareSync(req.body.password, userData.password)){
         req.session.set("user", userData)
         await req.session.save()
-        res.status(200).json({data: userData})
+        res.status(200).json({user: userData})
       }else{
-        res.status(200).json({data: false, message: "The password is wrong."})
+        res.status(200).json({user: false, message: "The password is wrong."})
       }
     }else{
-      res.status(200).json({data: userData, message: "The email is wrong."})
+      res.status(200).json({user: userData, message: "The email is wrong."})
     }
     
   }else{

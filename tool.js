@@ -5,7 +5,7 @@ export async function getFetch(uri) {
     let response = await fetch(uri)
     return await response.json()
   } catch(err) {
-    alert(err);
+    console.log(err);
   }
 }
 
@@ -20,7 +20,7 @@ export async function postFetch(uri, data) {
     let response = await fetch(uri, options)
     return await response.json()
   } catch(err) {
-    alert(err);
+    console.log(err)
   }
 }
 

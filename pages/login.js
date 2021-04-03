@@ -2,18 +2,27 @@ import style from '../styles/Login.module.scss'
 import Header from '../components/header'
 import VHead from '../components/head'
 import Footer from '../components/footer'
-import { postFetch } from '../tool'
+import { postFetch, getFetch } from '../tool'
 import $ from 'jquery'
+import { useEffect } from 'react'
+import Router from 'next/router'
 
-export default function Login() {
+export default  function Login() {
+  useEffect( async () => {
+    const logged = await getFetch('/api/users/logged')
+    if (logged.user.email) {
+      Router.push('/dashboard')
+    }
+  })
+
   const onSubmitHandler = async (event) => {
     event.preventDefault()
     const email = $('#email').val()
     const password = $('#password').val()
     const result = await postFetch('/api/login', { email:email, password:password })
 
-    if(result.data){
-      alert(result.data._id)
+    if(result.user.email){
+      Router.push('/dashboard')
     }else{
       $(`#message`).html(result.message)
     }
