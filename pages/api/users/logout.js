@@ -1,7 +1,7 @@
 import { withIronSession } from "next-iron-session"
 
-async function handler(req, res, session) {
-  await req.session.destroy()
+function handler(req, res, session) {
+  req.session.destroy()
   res.json({logout: 'success'})
 }
 
