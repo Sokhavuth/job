@@ -7,7 +7,7 @@ import $ from 'jquery'
 import { postFetch, getThumbUrl } from '../../tool'
 import Router from 'next/router'
 import Link from 'next/link'
-import { useState } from 'react'
+
 
 const CKEditor = dynamic(
   () => import('../../components/dashboard/ckeditor'),
@@ -21,14 +21,12 @@ function Category(props) {
   }
 
   const setListing = () => {
-    const listCategoriesOdd = []
-    const listCategoriesEvent = []
+    const listCategories = []
     const categories = JSON.parse(props.categories)
     const thumbs = getThumbUrl(categories)
 
     for (let v in categories){
-      if (v % 2 == 0){
-        listCategoriesOdd.push(
+        listCategories.push(
         <li>
           <div>
             <Link href={`/category/${categories[v].id}`}>
@@ -40,33 +38,14 @@ function Category(props) {
             <div>{new Date(categories[v].date).toLocaleDateString()}</div>
           </div>
           <div className={style.edit}>
-              <img alt='' src='/images/edit.png' />
-              <img alt='' src='/images/delete.png' />
-            </div>
+            <img alt='' src='/images/edit.png' />
+            <img alt='' src='/images/delete.png' />
+          </div>
         </li>
       )
-      } else {
-        listCategoriesEvent.push(
-        <li>
-          <div>
-            <Link href={`/category/${categories[v].id}`}>
-              <a><img alt='' src={thumbs[v]} /></a>
-            </Link>
-          </div>
-          <div>
-            <Link href={`/category/${categories[v].id}`}><a>{categories[v].name}</a></Link>
-            <div>{new Date(categories[v].date).toLocaleDateString()}</div>
-          </div>
-          <div className={style.edit}>
-              <img alt='' src='/images/edit.png' />
-              <img alt='' src='/images/delete.png' />
-          </div>
-        </li>
-        )
-      }
     }
 
-    return [ listCategoriesOdd, listCategoriesEvent ]
+    return listCategories
     
   }
 
@@ -104,8 +83,7 @@ function Category(props) {
       </main>
 
       <div className={`${style.listing} region`}>
-        <div className={style.odd}><ul>{setListing()[0]}</ul></div>
-        <div className={style.event}><ul>{setListing()[1]}</ul></div>
+        <div className={style.odd}><ul>{setListing()}</ul></div>
       </div>
 
       <Footer />

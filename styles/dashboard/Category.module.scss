@@ -20,15 +20,14 @@
 
   .listing {
     margin-top: 20px;
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 15px;
     ul {
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-gap: 10px;
       list-style-type: none;
       padding: 0;
       li {
         background: rgb(187, 187, 187);
-        margin: 10px 0;
         display: grid;
         grid-template-columns: 20% auto 20%;
         grid-gap: 10px;
