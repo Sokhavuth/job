@@ -17,4 +17,45 @@
       }
     }
   }
+
+  .listing {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 15px;
+    ul {
+      list-style-type: none;
+      padding: 0;
+      li {
+        background: rgb(187, 187, 187);
+        margin: 10px 0;
+        display: grid;
+        grid-template-columns: 20% auto 20%;
+        grid-gap: 10px;
+        align-items: center;
+        font-weight: 500;
+        .edit {
+          text-align: right;
+          padding: 0 10px;
+          img{
+            float: none;
+            width: 30%;
+            margin: 0 5px;
+            visibility: hidden;
+          }
+        }
+        img{
+          width: 100%;
+          float: left;
+        }
+      }
+      li:hover {
+        .edit {
+          img {
+            visibility: visible;
+          }
+        }
+      }
+    }
+  }
 }

@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import cheerio from 'cheerio'
 
 export async function getFetch(uri) {
   try {
@@ -34,4 +35,24 @@ export async function setDbConnection() {
     useCreateIndex: true,
     useNewUrlParser: true
   })
+}
+
+export function getThumbUrl(contents, type=false){
+  const noPost = "/images/no-image.png"
+  const noUser = "/images/userthumb.png"
+  const playIcon = "/images/play.png"
+
+  var thumbUrls = [];
+  for(var v in contents){
+    const $ = cheerio.load(contents[v].info);
+    if($('img').length > 0){
+      thumbUrls.push($("img").first().attr("src"));
+    }else{
+      if(type == 'author')
+        thumbUrls.push(noUser);
+      else
+        thumbUrls.push(noPost);
+    }
+  }
+  return (thumbUrls);
 }
