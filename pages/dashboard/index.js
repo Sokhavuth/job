@@ -27,6 +27,7 @@ export default function Index() {
 
         <div className={style.content} id='content' >
           <CKEditor getCKEditor={getCKEditor} />
+          <div className={style.loadingImg} id='loadingImg'></div>
         </div>
         <div className={style.sidebar}>
           

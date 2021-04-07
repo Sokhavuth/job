@@ -67,11 +67,12 @@ function Category(props) {
       
       <main className={`${style.main} region`}>
         <div className={style.sidebar}>
-          <Sidebar />
+          <Sidebar  />
         </div>
 
         <div className={style.content} id='content' >
           <CKEditor getCKEditor={getCKEditor} />
+          <div className={style.loadingImg} id='loadingImg'></div>
         </div>
         <div className={style.sidebar}>
           <form className={style.props} onSubmit={postCategory}>
@@ -83,7 +84,7 @@ function Category(props) {
       </main>
 
       <div className={`${style.listing} region`}>
-        <div className={style.odd}><ul>{setListing()}</ul></div>
+        <ul>{setListing()}</ul>
       </div>
 
       <Footer />

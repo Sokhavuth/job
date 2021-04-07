@@ -4,11 +4,17 @@
     display: grid;
     grid-template-columns: 20% auto 20%;
     .content {
-      
+      position: relative;
       border-top: none;
       border-bottom: none;
       margin: 0 15px;
-      
+      .loadingImg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
     }
+    
   }
 }
