@@ -8,6 +8,12 @@
       border-top: none;
       border-bottom: none;
       margin: 0 15px;
+      .status {
+        text-align: center;
+        background: white;
+        padding: 5px;
+        border: 1px solid lightgrey;
+      }
       .loadingImg {
         position: absolute;
         top: 50%;
@@ -47,6 +53,10 @@
             width: 30%;
             margin: 0 5px;
             visibility: hidden;
+          }
+          img:hover {
+            opacity: .7;
+            cursor: pointer;
           }
         }
         img{

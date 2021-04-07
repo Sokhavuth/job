@@ -12,3 +12,11 @@ export default withIronSession(handler, {
     secure: process.env.NODE_ENV === "production",
   },
 })
+
+module.exports = withIronSession(handler, {
+  password: process.env.SESSION_KEY,
+  cookieName: 'logged-in',
+  cookieOptions: {
+    secure: process.env.NODE_ENV === "production",
+  },
+})
