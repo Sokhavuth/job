@@ -68,6 +68,7 @@ function Category(props) {
   }
 
   const editCategory = async (id) => {
+    $('#loadingImg').append("<img alt='' src='/images/loading.gif' />")
     const body = { id: id }
     var result = await postFetch('/api/categories/read', body)
     if (result.category.length > 0){
@@ -79,6 +80,7 @@ function Category(props) {
       const dateTime = date+'T'+time
       $('[name=dateTime]').val(dateTime)
       ckeditor.setData(result.category[0].info)
+      $('#loadingImg').html("")
     }
   }
 
