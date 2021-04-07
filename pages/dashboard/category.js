@@ -86,7 +86,19 @@ function Category(props) {
   }
 
   const deleteCategory = async (id) => {
-    alert(id)
+    $('#loadingImg').append("<img alt='' src='/images/loading.gif' />")
+    const body = { id: id }
+
+    const logged = await getFetch('/api/users/logged')
+    if( logged.user.role === 'Admin' ){
+      var result = await postFetch('/api/categories/delete', body)
+    } else {
+      alert('Only the Administator could delete category.')
+    }
+
+    if(result){
+      Router.reload()
+    }
   }
 
   return(
