@@ -7,6 +7,7 @@ import $ from 'jquery'
 import { postFetch, getFetch, getThumbUrl } from '../../tool'
 import Router from 'next/router'
 import Link from 'next/link'
+import { useState } from 'react'
 
 const CKEditor = dynamic(
   () => import('../../components/dashboard/ckeditor'),
@@ -20,10 +21,11 @@ function Category(props) {
   const getCKEditor = (editor) => {
     ckeditor = editor
   }
+
+  const [navCategories, setNavCategories] = useState([])
   
-  const setListing = () => {
+  const setListing = (categories) => {
     const listCategories = []
-    const categories = props.categories
     const thumbs = getThumbUrl(categories)
     for (let v in categories){
         listCategories.push(
@@ -101,6 +103,21 @@ function Category(props) {
     }
   }
 
+  const [page, setPage] = useState(1)
+
+  const navigate = async () => {
+    $('#paginate img').attr('src', '/images/loading.gif' )
+    setPage(page + 1)
+    const body = { page: page }
+    var result = await postFetch('/api/categories/navigate', body)
+    
+    if (result.categories.length > 0) {
+      const categories = setListing(result.categories)
+      setNavCategories(navCategories.concat(categories))
+    }
+    $('#paginate img').attr('src', '/images/load-more.png' )
+  }
+
   return(
     <div className={ style.Category}>
       <Header />
@@ -124,8 +141,14 @@ function Category(props) {
         </div>
       </main>
 
-      <div className={`${style.listing} region`}>
-        <ul>{setListing()}</ul>
+      <div className={`${style.listing} region`} id='listing'>
+        <ul>
+          {setListing(props.categories)}
+          {navCategories}
+        </ul>
+        <div className={style.paginate} id='paginate'>
+          <img onClick={ navigate } alt='' src='/images/load-more.png' />
+        </div>
       </div>
 
       <Footer />
