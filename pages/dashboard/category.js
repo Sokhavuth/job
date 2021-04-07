@@ -50,6 +50,7 @@ function Category(props) {
   }
 
   const postCategory = async (event) => {
+    $('#loadingImg').append("<img alt='' src='/images/loading.gif' />")
     event.preventDefault()
     const categoryName = $('[name=categoryName]').val()
     const dateTime = $('[name=dateTime]').val()
