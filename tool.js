@@ -42,17 +42,37 @@ export function getThumbUrl(contents, type=false){
   const noUser = "/images/userthumb.png"
   const playIcon = "/images/play.png"
 
-  var thumbUrls = [];
+  let $ = null
+
+  var thumbUrls = []
+  var thumbObjUrl = {}
+
   for(var v in contents){
-    const $ = cheerio.load(contents[v].info);
+    $ = cheerio.load(contents[v].info)
+    
     if($('img').length > 0){
-      thumbUrls.push($("img").first().attr("src"));
+      if (type === "thumbObjUrl"){
+        thumbObjUrl[contents[v].name] = $("img").first().attr("src")
+      } else {
+        thumbUrls.push($("img").first().attr("src"))
+      }
     }else{
-      if(type == 'author')
-        thumbUrls.push(noUser);
-      else
-        thumbUrls.push(noPost);
+      if(type == 'author'){
+        thumbUrls.push(noUser)
+      } else {
+        if (type === "thumbObjUrl"){
+          thumbObjUrl[contents[v].name] = noPost
+        } else {
+          thumbUrls.push(noPost)
+        }
+      }
     }
   }
-  return (thumbUrls);
+
+  if(type === "thumbObjUrl"){
+    return (thumbObjUrl)
+  } else {
+    return (thumbUrls)
+  }
+  
 }

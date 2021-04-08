@@ -4,6 +4,10 @@ import Footer from '../../components/footer'
 import Sidebar from '../../components/dashboard/sidebar'
 import dynamic from 'next/dynamic'
 import $ from 'jquery'
+import { postFetch, getFetch, getThumbUrl } from '../../tool'
+import Router from 'next/router'
+import { useState } from 'react'
+import Link from 'next/link'
 
 const CKEditor = dynamic(
   () => import('../../components/dashboard/ckeditor'),
@@ -12,6 +16,8 @@ const CKEditor = dynamic(
 
 function Job(props) {
   let ckeditor = null
+  let idHolder = null
+
   const getCKEditor = (editor) => {
     ckeditor = editor
   }
@@ -36,10 +42,71 @@ function Job(props) {
     categories += (category + ', ')
     $('[name=categories]').val(categories)
   }
+  
+  const setListing = (jobs) => {
+    const listjobs = []
+    const thumbs = getThumbUrl(props.categories, 'thumbObjUrl')
+    
+    for (let v in jobs){
+      listjobs.push(
+        <li>
+          <div>
+            <Link href={`/job/${jobs[v].id}`}>
+              <a><img alt='' src={thumbs[jobs[v]['categories'][0]]} /></a>
+            </Link>
+          </div>
+          <div>
+            <Link href={`/job/${jobs[v].id}`}><a>{jobs[v].title}</a></Link>
+            <div>{new Date(jobs[v].enddate).toLocaleDateString()}</div>
+          </div>
+          <div className={style.edit}>
+            <img onClick={ () => editJob(jobs[v].id) } alt='' src='/images/edit.png' />
+            <img onClick={ () => deleteJob(jobs[v].id) } alt='' src='/images/delete.png' />
+          </div>
+        </li>
+      )
+    }
+
+    return listjobs
+    
+  }
 
   const publish = async (event) => {
     event.preventDefault()
-    alert()
+
+    const title = $('[name=jobTitle]').val()
+    const categories = $('[name=categories]').val()
+    const payable = $('[name=payable]').val()
+    const location = $('[name=location]').val()
+    const postDate = $('[name=postDate]').val()
+    const endDate = $('[name=endDate]').val()
+    const link = $('[name=link]').val()
+    const content = ckeditor.getData()
+
+    const body = { id: idHolder, title: title, categories: categories, payable: payable, 
+      location: location, postDate: postDate, endDate: endDate, link: link, content: content }
+
+    var result = await postFetch('/api/jobs/create', body)
+
+    if(result){
+      Router.reload()
+    }
+  }
+
+  const [navJobs, setNavJobs] = useState([])
+  const [page, setPage] = useState(1)
+
+  const navigate = async () => {
+    $('#paginate img').attr('src', '/images/loading.gif' )
+    setPage(page + 1)
+    const body = { page: page }
+    var result = await postFetch('/api/jobs/navigate', body)
+    
+    if (result.jobs.length > 0) {
+      const jobs = setListing(result.jobs)
+      setNavJobs(navJobs.concat(jobs))
+    }
+    $('#paginate img').attr('src', '/images/load-more.png' )
   }
   
   return(
@@ -75,6 +142,17 @@ function Job(props) {
           </form>
         </div>
       </main>
+
+      <div className={`${style.listing} region`} id='listing'>
+        <ul>
+          {setListing(props.jobs)}
+          {navJobs}
+        </ul>
+        <div className={style.paginate} id='paginate'>
+          <img onClick={ navigate } alt='' src='/images/load-more.png' />
+        </div>
+      </div>
+
       <Footer />
     </div>
   )

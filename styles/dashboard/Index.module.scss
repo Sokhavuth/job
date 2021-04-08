@@ -33,4 +33,59 @@
       
     }
   }
+
+  .listing {
+    margin-top: 30px;
+    .paginate {
+      text-align: center;
+      background: rgb(187, 187, 187);
+      padding: 10px 0 5px;
+      margin-top: 10px;
+      img:hover {
+        opacity: .5;
+        cursor: pointer;
+      }
+    }
+    ul {
+      display: grid;
+      grid-template-columns: calc(50% - 5px) calc(50% - 5px);
+      grid-gap: 10px;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      li {
+        background: rgb(187, 187, 187);
+        display: grid;
+        grid-template-columns: 20% auto 20%;
+        grid-gap: 10px;
+        align-items: center;
+        font-weight: 500;
+        .edit {
+          text-align: right;
+          padding: 0 10px;
+          img{
+            float: none;
+            width: 30%;
+            margin: 0 5px;
+            visibility: hidden;
+          }
+          img:hover {
+            opacity: .7;
+            cursor: pointer;
+          }
+        }
+        img{
+          width: 100%;
+          float: left;
+        }
+      }
+      li:hover {
+        .edit {
+          img {
+            visibility: visible;
+          }
+        }
+      }
+    }
+  }
 }
