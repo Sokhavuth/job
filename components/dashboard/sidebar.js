@@ -13,7 +13,7 @@ export default function Sidebar() {
   return(
     <div className={`${style.Sidebar} region`}>
       <Link href="/dashboard"><a onClick={() => loadingPage('/dashboard') }><img alt='' src='/images/posting.png' /></a></Link>
-      <Link href="/dashboard"><a onClick={ () => loadingPage('/dashboard') }>Posts</a></Link>
+      <Link href="/dashboard"><a onClick={ () => loadingPage('/dashboard') }>Jobs</a></Link>
       <Link href="/dashboard/pages"><a onClick={ () => loadingPage('/dashboard/pages') }><img  alt='' src='/images/paging.png' /></a></Link>
       <Link href="/dashboard/pages"><a onClick={ () => loadingPage('/dashboard/pages') }>Pages</a></Link>
       <Link href="/dashboard/category"><a onClick={ () => loadingPage('/dashboard/category') }><img alt='' src='/images/category.png' /></a></Link>

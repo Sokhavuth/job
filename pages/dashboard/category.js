@@ -136,7 +136,7 @@ function Category(props) {
           <form className={style.props} onSubmit={postCategory}>
             <input type='text' placeholder='Category name' name='categoryName' required />
             <input type='datetime-local' defaultValue={props.dateTime} step='1' name='dateTime' required />
-            <input type='submit' value='Submit' />
+            <input type='submit' value='Publish' />
           </form>
         </div>
       </main>
