@@ -3,15 +3,9 @@ import Header from '../../components/header'
 import VHead from '../../components/head'
 import Footer from '../../components/footer'
 import ReactHtmlParser from 'html-react-parser'
-import { getThumbUrl, postFetch } from '../../tool'
-import Link from 'next/link'
-import { useState } from 'react'
-import $ from 'jquery'
 
 function Job(props) {
-
   const job = JSON.parse(props.job)
-  
 
   const genContent = () => {
     let categories = []
@@ -40,7 +34,6 @@ function Job(props) {
     return post
   }
   
-
   return(
     <div className={style.Job}>
       <VHead />
@@ -51,6 +44,7 @@ function Job(props) {
 
       <div className={`${style.panel}`}>
         <img alt='' src='/images/background.jpg' />
+        <div className={style.loadingImg} id='loadingImg'></div>
       </div>
 
       <main className={`${style.main} region`}>

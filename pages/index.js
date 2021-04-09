@@ -67,6 +67,7 @@ function Home(props) {
 
       <div className={`${style.panel}`}>
         <img alt='' src='/images/background.jpg' />
+        <div className={style.loadingImg} id='loadingImg'></div>
       </div>
 
       <div className={`${style.listing} region`} id='listing'>

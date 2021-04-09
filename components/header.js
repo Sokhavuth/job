@@ -1,5 +1,7 @@
 import style from '../styles/Header.module.scss'
 import Link from 'next/link'
+import Router from 'next/router'
+import $ from 'jquery'
 
 export default function Header(){
   let menuDropdown = false
@@ -15,12 +17,19 @@ export default function Header(){
     }
   }
 
+  const loadingPage = (uri) => {
+    if(Router.pathname !== uri)
+      $('#loadingImg').append("<img alt='' src='/images/loading.gif' />")
+  }
+
   return(
     <div className={style.Header}>
       <div className={`${style.menubar} region`}>
-        <div className={style.logo}><Link href='/'><a>Khwebjob</a></Link></div> 
+        <div className={style.logo}>
+          <Link href='/'><a onClick={() => loadingPage('/') } >Khwebjob</a></Link>
+        </div> 
         <div className={`${style.topnav} topnav`} id="topmenu">
-          <Link href='/'><a className={style.active}>Home</a></Link>
+          <Link href='/'><a onClick={() => loadingPage('/') } className={style.active}>Home</a></Link>
           <a href="#contact">Contact</a>
           <a href="#about">About</a>
           <a className={style.icon} onClick={openMobileMenu}>
