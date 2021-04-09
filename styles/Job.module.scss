@@ -1,0 +1,84 @@
+.Job{
+  .panel{
+    img {
+      width: 100%;
+    }
+  }
+
+  .main {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: auto 40%;
+    grid-gap: 20px;
+    .content, .sidebar {
+      background: rgb(238, 238, 238);
+      min-height: 400px;
+      padding: 20px;
+    }
+    .content {
+      .title {
+        font: 20px/1.5 Oswald;
+        margin-bottom: 20px;
+      }
+      .payable {
+        font-weight: 700;
+        .date {
+          float: right;
+        }
+      }
+      .categories {
+        color: orangered;
+      }
+      .bid {
+        float: right;
+        background: green;
+        padding: 3px 15px 5px;
+        border-radius: 3px;
+        a {
+          color: white;
+          font-weight: 500;
+        }
+      }
+    }
+    .sidebar {
+      
+    }
+  }
+
+}
+
+@media only screen and (min-width: 1920px) {
+  .Job{
+    .panel{
+      height: 272px;
+      img{
+        display: none;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .Job {
+    .main {
+      grid-template-columns: 100%;
+      margin: 15px;
+      .content {
+        .title {
+          font: 18px/1.5 Oswald;
+          margin-bottom: 20px;
+        }
+        .payable {
+          .date {
+            float: none;
+            display: block;
+          }
+        }
+        .bid {
+          float: none;
+          display: block;
+        }
+      }
+    }
+  }
+}
