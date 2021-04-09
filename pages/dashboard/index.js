@@ -133,8 +133,8 @@ function Job(props) {
               <option>Select categories from here</option>
               {setCategorries()}
             </select>
-            <input type='text' name='payable' placeholder='Payable' required />
             <input type='text' name='location' placeholder='Location' required />
+            <input type='text' name='payable' placeholder='Payable' required />
             <input type='datetime-local' name='postDate' defaultValue={props.postDateTime} />
             <input type='datetime-local' name='endDate' defaultValue={props.endDateTime} />
             <input type='text' name='link' placeholder='Link' required />

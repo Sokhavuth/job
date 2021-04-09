@@ -2,7 +2,7 @@ import style from '../styles/Home.module.scss'
 import Header from '../components/header'
 import VHead from '../components/head'
 import Footer from '../components/footer'
-import { getThumbUrl } from '../tool'
+import { getThumbUrl, postFetch } from '../tool'
 import Link from 'next/link'
 import { useState } from 'react'
 import $ from 'jquery'
@@ -23,9 +23,13 @@ function Home(props) {
           </div>
           <div className={style.content}>
             <Link href={`/job/${jobs[v].id}`}><a>{jobs[v].title}</a></Link>
-            <div>{jobs[v].payable}</div>
-            <div>Location: {jobs[v].location}</div>
-            <div>Closing date: {new Date(jobs[v].enddate).toLocaleDateString()}</div>
+            <Link href={`/job/${jobs[v].id}`}>
+              <a className={style.properties}>
+                <div>{jobs[v].payable}</div>
+                <div>Location: {jobs[v].location}</div>
+                <div>Closing date: {new Date(jobs[v].enddate).toLocaleDateString()}</div>
+              </a>
+            </Link>
           </div>
         </li>
       )
@@ -42,14 +46,14 @@ function Home(props) {
     $('#paginate img').attr('src', '/images/loading.gif' )
     setPage(page + 1)
     const body = { page: page }
-    /*
+    
     var result = await postFetch('/api/jobs/navigate', body)
     
     if (result.jobs.length > 0) {
       const jobs = setListing(result.jobs)
       setNavJobs(navJobs.concat(jobs))
     }
-    */
+    
     $('#paginate img').attr('src', '/images/load-more.png' )
   }
 

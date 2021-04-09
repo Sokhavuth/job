@@ -15,11 +15,12 @@ const CKEditor = dynamic(
 )
 
 function Category(props) {
-  let ckeditor = null
-  let idHolder = null
+  
+  const [ ckeditor, setCkeditor ] = useState(null)
+  const [ idHolder, setIdHolder ] = useState(null)
 
   const getCKEditor = (editor) => {
-    ckeditor = editor
+    setCkeditor(editor)
   }
 
   const [navCategories, setNavCategories] = useState([])
@@ -75,7 +76,7 @@ function Category(props) {
     const body = { id: id }
     var result = await postFetch('/api/categories/read', body)
     if (result.category.length > 0){
-      idHolder = result.category[0].id
+      setIdHolder(result.category[0].id)
       $('[name=categoryName]').val(result.category[0].name)
       const dateTime_ = new Date(result.category[0].date)
       const date = dateTime_.toLocaleDateString('fr-CA')

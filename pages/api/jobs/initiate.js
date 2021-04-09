@@ -8,5 +8,4 @@ async function getJobs (amount) {
   return  JSON.stringify({ jobs: jobs, count: count })
 }
 
-
 module.exports = getJobs
