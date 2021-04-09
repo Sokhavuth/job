@@ -9,17 +9,22 @@ import $ from 'jquery'
 
 function Home(props) {
 
+  const loadingJob = (event) => {
+    $(event.currentTarget).find('.loadingImg').html('<img alt="" src="/images/loading.gif" />')
+  }
+
   const setListing = (jobs) => {
     const listjobs = []
     const thumbs = getThumbUrl(props.categories, 'thumbObjUrl')
     
     for (let v in jobs){
       listjobs.push(
-        <li>
-          <div>
+        <li onClick={loadingJob}>
+          <div className={style.thumbOuter}>
             <Link href={`/job/${jobs[v].id}`}>
               <a><img alt='' src={thumbs[jobs[v]['categories'][0]]} /></a>
             </Link>
+            <div className={`${style.loadingImg} loadingImg`}></div>
           </div>
           <div className={style.content}>
             <Link href={`/job/${jobs[v].id}`}><a>{jobs[v].title}</a></Link>
