@@ -1,3 +1,5 @@
+import schema from './schema'
+
 const allowCors = fn => async (req, res) => {
   res.setHeader('Access-Control-Allow-Credentials', true)
   res.setHeader('Access-Control-Allow-Origin', '*')
@@ -15,9 +17,16 @@ const allowCors = fn => async (req, res) => {
   return await fn(req, res)
 }
 
+async function getJobs (amount) {
+  
+  
+}
+
 const handler = (req, res) => {
-  const d = new Date()
-  res.json({date: d.toString()})
+  const jobSchema = await schema()
+  var jobs = await jobSchema.find().sort({postdate: -1, _id: -1}).limit(req.body.amount)
+
+  res.json({ jobs: jobs })
 }
 
 export default allowCors(handler)
