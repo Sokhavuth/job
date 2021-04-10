@@ -3,6 +3,7 @@ import Header from '../../components/header'
 import VHead from '../../components/head'
 import Footer from '../../components/footer'
 import ReactHtmlParser from 'html-react-parser'
+import { DiscussionEmbed } from 'disqus-react'
 
 function Job(props) {
   const job = JSON.parse(props.job)
@@ -26,9 +27,24 @@ function Job(props) {
 
         <div className={style.body}>{ReactHtmlParser(job.content)}</div>
         <div>
-          Skills needed: <span className={style.categories}>{categories}</span>
+          <span className={style.wrapper}>
+            Skills needed: <span className={style.categories}>{categories}</span>
+          </span>
           <span className={style.bid}><a href={job.link} target='_blank'>Bid now</a></span>
         </div>
+
+        <DiscussionEmbed
+          shortname='khmerweb'
+          config={
+            {
+              url: `https://job-ten.vercel.app/job/${job.id}`,
+              identifier: job.id,
+              title: job.title,
+              language: 'en_US' 
+            }
+          }
+        />
+
       </div>
     )
     return post

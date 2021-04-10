@@ -80,9 +80,12 @@
             display: block;
           }
         }
+        .wrapper {
+          display: block;
+          padding-bottom: 10px;
+        }
         .bid {
           float: none;
-          display: block;
         }
       }
     }
