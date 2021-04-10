@@ -1,16 +1,23 @@
-import schema from './schema'
-
-export default async function getJob (req, res) {
-  const jobSchema = await schema()
-  //const job = await jobSchema.find({ id: req.body.id })
-  res.status(200).json({ job: 'Hello' })
-  //return "Hello"
+const allowCors = fn => async (req, res) => {
+  res.setHeader('Access-Control-Allow-Credentials', true)
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  // another common pattern
+  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  )
+  if (req.method === 'OPTIONS') {
+    res.status(200).end()
+    return
+  }
+  return await fn(req, res)
 }
 
-async function get_Job (id) {
-  const jobSchema = await schema()
-  const job = await jobSchema.findOne({ id: id })
-  return { job: JSON.stringify(job) }
+const handler = (req, res) => {
+  const d = new Date()
+  res.end(d.toString())
 }
 
-module.exports = get_Job
+export default allowCors(handler)
