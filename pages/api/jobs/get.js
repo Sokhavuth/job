@@ -17,12 +17,7 @@ const allowCors = fn => async (req, res) => {
   return await fn(req, res)
 }
 
-async function getJobs (amount) {
-  
-  
-}
-
-const handler = (req, res) => {
+const handler = async (req, res) => {
   const jobSchema = await schema()
   var jobs = await jobSchema.find().sort({postdate: -1, _id: -1}).limit(req.body.amount)
 
