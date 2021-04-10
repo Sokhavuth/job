@@ -19,8 +19,9 @@ const allowCors = fn => async (req, res) => {
 
 const handler = async (req, res) => {
   const jobSchema = await schema()
-  var jobs = await jobSchema.find().sort({postdate: -1, _id: -1}).limit(req.body.amount)
-
+  const amount = parseInt(req.query.amount)
+  var jobs = await jobSchema.find().sort({postdate: -1, _id: -1}).limit(amount)
+  
   res.json({ jobs: jobs })
 }
 
