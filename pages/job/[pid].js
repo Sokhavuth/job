@@ -83,7 +83,7 @@ export async function getServerSideProps(context) {
   const job = result.job
   return {
     props: {
-      job
+      job,
     }
   }
 }
