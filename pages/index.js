@@ -4,7 +4,7 @@ import VHead from '../components/head'
 import Footer from '../components/footer'
 import { getThumbUrl, postFetch } from '../tool'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect} from 'react'
 import $ from 'jquery'
 
 function Home(props) {

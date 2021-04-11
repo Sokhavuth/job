@@ -26,7 +26,7 @@ async function getRandomJobs (amount) {
     randomJobs.push(randomJob)
   }
 
-  return JSON.stringify({ job: randomJobs })
+  return JSON.stringify(randomJobs)
   
 }
 

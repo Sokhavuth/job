@@ -4,12 +4,15 @@ import VHead from '../../components/head'
 import Footer from '../../components/footer'
 import ReactHtmlParser from 'html-react-parser'
 import { DiscussionEmbed } from 'disqus-react'
+import { getThumbUrl } from '../../tool'
+import $ from 'jquery'
+import Link from 'next/link'
 
 function Job(props) {
-  const job = JSON.parse(props.job)
 
   const genContent = () => {
     let categories = []
+    const job = JSON.parse(props.job)
 
     for (let v in job.categories){
       categories.push(`${job.categories[v]}, `)
@@ -47,9 +50,44 @@ function Job(props) {
 
       </div>
     )
+
     return post
   }
-  
+
+  const loadingJob = (event) => {
+    $(event.currentTarget).find('.loadingImg').html('<img alt="" src="/images/loading.gif" />')
+  }
+
+  const genRandomJob = () => {
+    const jobList = []
+    const jobs = props.randomJobs
+    const thumbs = getThumbUrl(props.categories, 'thumbObjUrl')
+
+    for (let v in jobs){
+      jobList.push(
+        <li onClick={loadingJob}>
+          <div className={style.thumbOuter}>
+            <Link href={`/job/${jobs[v].id}`} ><a><img alt='' src={thumbs[jobs[v].categories[0]]} /></a></Link>
+            <div className={`${style.loadingImg} loadingImg`}></div>
+          </div>
+          <Link href={`/job/${jobs[v].id}`}>
+          <a className={style.content}>
+            <Link href={`/job/${jobs[v].id}`} ><a>{jobs[v].title}</a></Link>
+            <a className={style.properties}>
+              <div>{jobs[v].payable}</div>
+              <div>Closing date: {new Date(jobs[v].enddate).toLocaleDateString()}</div>
+            </a>
+          </a>
+          </Link>
+        </li>
+      )
+    }
+
+    $('li').find('.loadingImg').html('')
+    return jobList
+    
+  }
+
   return(
     <div className={style.Job}>
       <VHead />
@@ -66,10 +104,12 @@ function Job(props) {
 
       <main className={`${style.main} region`}>
         <div className={style.content}>
-          {genContent()}
+          { genContent() }
         </div>
-        <div className={style.sidebar}>
-          Random jobs
+        <div className={`${style.sidebar} sidebar`}>
+          <ul>
+          { genRandomJob() }
+          </ul>
         </div>
       </main>
 
@@ -84,12 +124,18 @@ export async function getServerSideProps(context) {
   const job = result.job
 
   const setting = require('../../setting')
-  const randomJobs = await require('../api/jobs/random')(setting.randomJobLimit)
+  const _randomJobs = await require('../api/jobs/random')(setting.randomJobLimit)
+  const randomJobs = JSON.parse(_randomJobs)
+  
+  const dataCategory = await require('../api/categories/initial')()
+  const _dataCategory = JSON.parse(dataCategory)
+  const categories = _dataCategory.categories
   
   return {
     props: {
       job,
       randomJobs,
+      categories,
     }
   }
   
