@@ -57,18 +57,15 @@
             color: black;
           }
         }
+        .content:hover {
+          opacity: .5;
+        }
         img{
           width: 100%;
           float: left;
         }
       }
-      li:hover {
-        .edit {
-          img {
-            visibility: visible;
-          }
-        }
-      }
+      
     }
   }
 
