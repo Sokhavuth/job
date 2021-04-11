@@ -11,8 +11,6 @@ import { useState, useEffect } from 'react'
 
 function Job(props) {
 
-  const [jobs, setJob] = useState(props.randomJobs)
-
   const genContent = () => {
     let categories = []
     const job = JSON.parse(props.job)
@@ -84,10 +82,14 @@ function Job(props) {
         </li>
       )
     }
-    $('li').find('.loadingImg').html('')
+    
     return jobList
     
   }
+
+  useEffect(() => {
+    $('li').find('.loadingImg').html('')
+  })
 
   return(
     <div className={style.Job}>
@@ -109,7 +111,8 @@ function Job(props) {
         </div>
         <div className={`${style.sidebar} sidebar`}>
           <ul>
-          
+          {genRandomJob()}
+          {}
           </ul>
         </div>
       </main>
