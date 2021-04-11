@@ -7,8 +7,11 @@ import { DiscussionEmbed } from 'disqus-react'
 import { getThumbUrl } from '../../tool'
 import $ from 'jquery'
 import Link from 'next/link'
+import { useState, useEffect } from 'react'
 
 function Job(props) {
+
+  const [randomJobs, setRandomJobs] = useState('')
 
   const genContent = () => {
     let categories = []
@@ -50,7 +53,6 @@ function Job(props) {
 
       </div>
     )
-
     return post
   }
 
@@ -82,7 +84,6 @@ function Job(props) {
         </li>
       )
     }
-
     $('li').find('.loadingImg').html('')
     return jobList
     
