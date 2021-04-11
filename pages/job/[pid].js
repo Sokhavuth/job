@@ -7,7 +7,7 @@ import { DiscussionEmbed } from 'disqus-react'
 import { getThumbUrl } from '../../tool'
 import $ from 'jquery'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 
 function Job(props) {
 
@@ -65,7 +65,7 @@ function Job(props) {
 
     for (let v in jobs){
       jobList.push(
-        <li onClick={loadingJob}>
+        <li onClick={loadingJob} class='randomJob'>
           <div className={style.thumbOuter}>
             <Link href={`/job/${jobs[v].id}`} ><a><img alt='' src={thumbs[jobs[v].categories[0]]} /></a></Link>
             <div className={`${style.loadingImg} loadingImg`}></div>
@@ -88,7 +88,7 @@ function Job(props) {
   }
 
   useEffect(() => {
-    $('li').find('.loadingImg').html('')
+    $('.randomJob').find('.loadingImg').html('')
   })
 
   return(
