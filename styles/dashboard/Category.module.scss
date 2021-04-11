@@ -56,6 +56,12 @@
         grid-gap: 10px;
         align-items: center;
         font-weight: 500;
+        .title {
+          padding: 5px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
         .edit {
           text-align: right;
           padding: 0 10px;

@@ -55,7 +55,7 @@ function Job(props) {
               <a><img alt='' src={thumbs[jobs[v]['categories'][0]]} /></a>
             </Link>
           </div>
-          <div>
+          <div className={style.title}>
             <Link href={`/job/${jobs[v].id}`}><a>{jobs[v].title}</a></Link>
             <div>{new Date(jobs[v].enddate).toLocaleDateString()}</div>
           </div>

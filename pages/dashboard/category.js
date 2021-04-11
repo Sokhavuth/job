@@ -36,7 +36,7 @@ function Category(props) {
               <a><img alt='' src={thumbs[v]} /></a>
             </Link>
           </div>
-          <div>
+          <div className={style.title}>
             <Link href={`/category/${categories[v].id}`}><a>{categories[v].name}</a></Link>
             <div>{new Date(categories[v].date).toLocaleDateString()}</div>
           </div>

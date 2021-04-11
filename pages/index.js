@@ -72,6 +72,7 @@ function Home(props) {
 
       <div className={`${style.panel}`}>
         <img alt='' src='/images/background.jpg' />
+        <div style={{clear: 'both'}}></div>
         <div className={style.loadingImg} id='loadingImg'></div>
       </div>
 

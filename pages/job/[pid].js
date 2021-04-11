@@ -60,6 +60,7 @@ function Job(props) {
 
       <div className={`${style.panel}`}>
         <img alt='' src='/images/background.jpg' />
+        <div style={{clear: 'both'}}></div>
         <div className={style.loadingImg} id='loadingImg'></div>
       </div>
 
@@ -81,11 +82,17 @@ export async function getServerSideProps(context) {
   const getJob = require('../api/jobs/read')
   const result = await getJob(context.query.pid)
   const job = result.job
+
+  const setting = require('../../setting')
+  const randomJobs = await require('../api/jobs/random')(setting.randomJobLimit)
+  
   return {
     props: {
       job,
+      randomJobs,
     }
   }
+  
 }
 
 export default Job

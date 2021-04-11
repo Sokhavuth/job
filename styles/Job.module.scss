@@ -1,8 +1,10 @@
 .Job{
   .panel{
     position: relative;
+    border-bottom: 10px solid white;
     img {
       width: 100%;
+      float: left;
     }
     .loadingImg {
       position: absolute;
