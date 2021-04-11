@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react'
 
 function Job(props) {
 
-  const [randomJobs, setRandomJobs] = useState('')
+  const [jobs, setJob] = useState(props.randomJobs)
 
   const genContent = () => {
     let categories = []
@@ -109,7 +109,7 @@ function Job(props) {
         </div>
         <div className={`${style.sidebar} sidebar`}>
           <ul>
-          { genRandomJob() }
+          
           </ul>
         </div>
       </main>
