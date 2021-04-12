@@ -1,6 +1,7 @@
 import style from '../../styles/Job.module.scss'
 import Header from '../../components/header'
 import VHead from '../../components/head'
+import Panel from '../../components/panel'
 import Footer from '../../components/footer'
 import ReactHtmlParser from 'html-react-parser'
 import { DiscussionEmbed } from 'disqus-react'
@@ -99,11 +100,7 @@ function Job(props) {
         <Header />
       </header>
 
-      <div className={`${style.panel}`}>
-        <img alt='' src='/images/background.jpg' />
-        <div style={{clear: 'both'}}></div>
-        <div className={style.loadingImg} id='loadingImg'></div>
-      </div>
+      <Panel categories={props.categories} />
 
       <main className={`${style.main} region`}>
         <div className={style.content}>

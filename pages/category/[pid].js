@@ -1,14 +1,14 @@
-import style from '../styles/Home.module.scss'
-import Header from '../components/header'
-import VHead from '../components/head'
-import Panel from '../components/panel'
-import Footer from '../components/footer'
-import { getThumbUrl, postFetch } from '../tool'
+import style from '../../styles/Home.module.scss'
+import Header from '../../components/header'
+import VHead from '../../components/head'
+import Panel from '../../components/panel'
+import Footer from '../../components/footer'
+import { getThumbUrl, postFetch } from '../../tool'
 import Link from 'next/link'
 import { useState, useEffect} from 'react'
 import $ from 'jquery'
 
-function Home(props) {
+function Category(props) {
 
   const loadingJob = (event) => {
     $(event.currentTarget).find('.loadingImg').html('<img alt="" src="/images/loading.gif" />')
@@ -51,7 +51,7 @@ function Home(props) {
   const navigate = async () => {
     $('#paginate img').attr('src', '/images/loading.gif' )
     setPage(page + 1)
-    const body = { page: page }
+    const body = { page: page, name: props.name }
     
     var result = await postFetch('/api/jobs/navigate', body)
     
@@ -88,21 +88,22 @@ function Home(props) {
   )
 }
 
-export async function getServerSideProps() {
-  const setting = require('../setting')
-  const data = await require('./api/jobs/initiate')(setting.frontPagePostLimit)
-  const _data = JSON.parse(data)
-  const jobs = _data.jobs
+export async function getServerSideProps(context) {
+  const setting = require('../../setting')
+  const name = context.query.pid
+  const data = await require('../api/jobs/initiate')(setting.frontPagePostLimit, name)
+  const jobs = JSON.parse(data)
 
-  const dataCategory = await require('./api/categories/initial')()
+  const dataCategory = await require('../api/categories/initial')()
   const _dataCategory = JSON.parse(dataCategory)
   const categories = _dataCategory.categories
 
   return { props: { 
+      name,
       jobs,
       categories,
     } 
   }
 }
 
-export default Home
+export default Category

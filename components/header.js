@@ -30,7 +30,7 @@ export default function Header(){
         </div> 
         <div className={`${style.topnav} topnav`} id="topmenu">
           <Link href='/'><a onClick={() => loadingPage('/') } className={style.active}>Home</a></Link>
-          <Link href='https://www.khmerweb.app/'><a onClick={() => loadingPage('/') }>Learning</a></Link>
+          <Link href='https://www.khmerweb.app/'><a>Learning</a></Link>
           <a href="#contact">Contact</a>
           <a href="#about">About</a>
           <a className={style.icon} onClick={openMobileMenu}>
