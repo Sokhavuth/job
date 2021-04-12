@@ -111,8 +111,7 @@ function Job(props) {
         </div>
         <div className={`${style.sidebar} sidebar`}>
           <ul>
-          {genRandomJob()}
-          {}
+          { genRandomJob() }
           </ul>
         </div>
       </main>
