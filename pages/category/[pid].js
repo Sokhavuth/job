@@ -5,7 +5,7 @@ import Panel from '../../components/panel'
 import Footer from '../../components/footer'
 import { getThumbUrl, postFetch } from '../../tool'
 import Link from 'next/link'
-import { useState, useEffect} from 'react'
+import { useState } from 'react'
 import $ from 'jquery'
 
 function Category(props) {
