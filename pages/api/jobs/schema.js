@@ -16,6 +16,7 @@ export default async () => {
     link: { type: String, required: true },
   })
 
+  jobSchemas.index({ title: 'text', content: 'text', payable: 'text', location: 'text' })
   mongoose.models = {}
   const jobSchema = mongoose.model('jobs', jobSchemas)
 

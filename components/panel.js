@@ -28,6 +28,12 @@ function Panel (props) {
     $('#loadingImg').html('')
   })
 
+  const onSubmitHandler = (event) => {
+    event.preventDefault()
+    const q = $('#q').val()
+    Router.push(`/search/${q}`)
+  }
+
   return(
     <div className={style.Panel}>
       <div className={`${style.panel}`}>
@@ -38,8 +44,8 @@ function Panel (props) {
             <option>Categories</option>
             { genCategory() }
           </select>
-          <form>
-            <input type='text' placeholder='Search' name='q'  required />
+          <form onSubmit={ onSubmitHandler }>
+            <input id='q' type='text' placeholder='Search' name='q'  required />
             <input type='submit' value='Search' />
           </form>
         </div>
