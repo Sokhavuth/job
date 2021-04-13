@@ -17,7 +17,7 @@ function Panel (props) {
 
     return optionList
   }
-
+  
   const onCategoryHandler = (event) => {
     let val = event.target.value
     $('#loadingImg').html('<img alt="" src="/images/loading.gif" />')

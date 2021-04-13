@@ -5,8 +5,9 @@ import Panel from '../../components/panel'
 import Footer from '../../components/footer'
 import { getThumbUrl, postFetch } from '../../tool'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import $ from 'jquery'
+
 
 function Category(props) {
 
@@ -40,7 +41,6 @@ function Category(props) {
         </li>
       )
     }
-
     return listjobs
     
   }
@@ -63,6 +63,12 @@ function Category(props) {
     $('#paginate img').attr('src', '/images/load-more.png' )
   }
 
+  useEffect(() => {
+    setNavJobs([])
+    setPage(1)
+  },[props.jobs])
+
+  
   return (
     <div className={style.Home}>
       <VHead />
@@ -73,8 +79,8 @@ function Category(props) {
 
       <Panel categories={props.categories} />
 
-      <div className={`${style.listing} region`} id='listing'>
-        <ul>
+      <div className={`${style.listing} region`} >
+        <ul id='listing'>
           {setListing(props.jobs)}
           {navJobs}
         </ul>
