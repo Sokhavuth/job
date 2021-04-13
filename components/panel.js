@@ -29,6 +29,7 @@ function Panel (props) {
   })
 
   const onSubmitHandler = (event) => {
+    $('#loadingImg').html('<img alt="" src="/images/loading.gif" />')
     event.preventDefault()
     const q = $('#q').val()
     Router.push(`/search/${q}`)

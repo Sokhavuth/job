@@ -3,13 +3,13 @@ import Header from '../../components/header'
 import VHead from '../../components/head'
 import Panel from '../../components/panel'
 import Footer from '../../components/footer'
-import { getThumbUrl, postFetch } from '../../tool'
+import { getThumbUrl } from '../../tool'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
 import $ from 'jquery'
+import { useEffect } from 'react'
 
 
-function Category(props) {
+function Search (props) {
 
   const loadingJob = (event) => {
     $(event.currentTarget).find('.loadingImg').html('<img alt="" src="/images/loading.gif" />')
@@ -44,30 +44,11 @@ function Category(props) {
     return listjobs
     
   }
-/*
-  const [navJobs, setNavJobs] = useState([])
-  const [page, setPage] = useState(1)
-
-  const navigate = async () => {
-    $('#paginate img').attr('src', '/images/loading.gif' )
-    setPage(page + 1)
-    const body = { page: page, name: props.name }
-    
-    var result = await postFetch('/api/jobs/navigate', body)
-    
-    if (result.jobs.length > 0) {
-      const jobs = setListing(result.jobs)
-      setNavJobs(navJobs.concat(jobs))
-    }
-    
-    $('#paginate img').attr('src', '/images/load-more.png' )
-  }
 
   useEffect(() => {
-    setNavJobs([])
-    setPage(1)
-  },[props.jobs])
-*/  
+    $('#loadingImg').html('')
+  })
+
   return (
     <div className={style.Home}>
       <VHead />
@@ -107,4 +88,4 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default Category
+export default Search
