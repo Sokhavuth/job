@@ -9,7 +9,7 @@ export default async function getJob (req, res) {
 async function get_Job (id) {
   const jobSchema = await schema()
   const job = await jobSchema.findOne({ id: id })
-  return { job: JSON.stringify(job) }
+  return ({ job: JSON.stringify(job) })
 }
 
 module.exports = get_Job

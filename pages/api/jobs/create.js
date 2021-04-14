@@ -19,7 +19,7 @@ export default async (req, res) => {
       location: req.body.location, postdate: postdate, 
       enddate: enddate, link: req.body.link })
   } else {
-    job = await category.findOne({ id: req.body.id })
+    job = await jobSchema.findOne({ id: req.body.id })
     job.title = req.body.title
     job.categories = categories
     job.content = req.body.content
