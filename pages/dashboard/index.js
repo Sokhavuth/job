@@ -72,7 +72,7 @@ function Job(props) {
   }
 
   const publish = async (event) => {
-    $('#paginate img').attr('src', '/images/loading.gif' )
+    $('#loadingImg').append("<img alt='' src='/images/loading.gif' />")
     event.preventDefault()
 
     const title = $('[name=jobTitle]').val()
