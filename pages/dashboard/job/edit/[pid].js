@@ -1,15 +1,15 @@
-import style from '../../../styles/dashboard/Index.module.scss'
-import Header from '../../../components/dashboard/header'
-import Footer from '../../../components/footer'
-import Sidebar from '../../../components/dashboard/sidebar'
+import style from '../../../../styles/dashboard/Index.module.scss'
+import Header from '../../../../components/dashboard/header'
+import Footer from '../../../../components/footer'
+import Sidebar from '../../../../components/dashboard/sidebar'
 import dynamic from 'next/dynamic'
 import $ from 'jquery'
-import { postFetch, getThumbUrl } from '../../../tool'
+import { postFetch, getThumbUrl } from '../../../../tool'
 import Router from 'next/router'
 import Link from 'next/link'
 
 const CKEditor = dynamic(
-  () => import('../../../components/dashboard/ckeditor'),
+  () => import('../../../../components/dashboard/ckeditor'),
   { ssr: false }
 )
 
@@ -152,11 +152,11 @@ function Edit (props) {
 
 export async function getServerSideProps(context) {
   const id = context.query.pid
-  const data = await require('../../api/jobs/read')(id)
+  const data = await require('../../../api/jobs/read')(id)
   const job = JSON.parse( data.job )
   const countJobs = 1
 
-  const dataCategory = await require('../../api/categories/initial')()
+  const dataCategory = await require('../../../api/categories/initial')()
   const _dataCategory = JSON.parse(dataCategory)
   const categories = _dataCategory.categories
   const countCategories = _dataCategory.count

@@ -110,9 +110,19 @@ function Job(props) {
     $('#paginate img').attr('src', '/images/load-more.png' )
   }
 
-  const editJob = async (id) => {
+  const editJob = (id) => {
     $('#loadingImg').append("<img alt='' src='/images/loading.gif' />")
-    Router.push(`/dashboard/edit/${id}`)
+    Router.push(`/dashboard/job/edit/${id}`)
+  }
+
+  const deleteJob = async (id) => {
+    $('#loadingImg').append("<img alt='' src='/images/loading.gif' />")
+    const body = {id: id}
+    var result = await postFetch('/api/jobs/delete', body)
+    if(result){
+      Router.reload()
+      
+    }
   }
   
   return(
