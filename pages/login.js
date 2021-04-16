@@ -32,6 +32,7 @@ export default function Login() {
   })
 
   const onSubmitHandler = async (event) => {
+    $('#loadingImg').append("<img alt='' src='/images/loading.gif' />")
     event.preventDefault()
     const email = $('#email').val()
     const password = $('#password').val()
