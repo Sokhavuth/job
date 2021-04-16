@@ -25,6 +25,7 @@ export default function Login() {
               <a></a><input type='submit' value='Submit' />
               <a></a><div className={style.message} id='message'></div>
             </form>
+            <div className={`${style.loadingImg} loadingImg`}></div>
           </div>
         )
       )
@@ -32,7 +33,7 @@ export default function Login() {
   })
 
   const onSubmitHandler = async (event) => {
-    $('#loadingImg').append("<img alt='' src='/images/loading.gif' />")
+    $('.loadingImg').append("<img alt='' src='/images/loading.gif' />")
     event.preventDefault()
     const email = $('#email').val()
     const password = $('#password').val()
