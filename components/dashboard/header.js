@@ -4,7 +4,6 @@ import Link from 'next/link'
 import Router from 'next/router'
 import { useState, useEffect } from 'react'
 import { getFetch, postFetch } from '../../tool'
-import Link from 'next/link'
 
 export default function Header() {
 
