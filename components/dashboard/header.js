@@ -30,7 +30,7 @@ export default function Header() {
                 <input type='submit' value='Search' />
               </form>
               <div className={style.logout}>
-                <Link href='/'><a>Home</a></Link> | <a onClick={logout}>Logout</a>
+                <Link href='/'><a>Home</a></Link><a onClick={logout}> | Logout</a>
               </div>
             </div>
           </header>
