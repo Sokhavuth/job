@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Router from 'next/router'
 import { useState, useEffect } from 'react'
 import { getFetch, postFetch } from '../../tool'
+import Link from 'next/link'
 
 export default function Header() {
 
@@ -30,6 +31,7 @@ export default function Header() {
                 <input type='submit' value='Search' />
               </form>
               <div className={style.logout}>
+                <Link href='/'><a>Home</a></Link>
                 <a onClick={logout}>Logout</a>
               </div>
             </div>
