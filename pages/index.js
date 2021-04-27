@@ -74,6 +74,9 @@ function Home(props) {
       <Panel categories={props.categories} />
 
       <div className={`${style.listing} region`} id='listing'>
+        <div className={style.ad}>
+          <img src='/images/ad.jpg' /><img src='/images/ad.jpg' />
+        </div>
         <ul>
           {setListing(props.jobs)}
           {navJobs}
