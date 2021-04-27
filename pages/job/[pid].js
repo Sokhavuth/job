@@ -30,6 +30,10 @@ function Job(props) {
           <div>Location: {job.location}</div>
         </div>
 
+        <div className={style.ad}>
+          <img src='/images/ad.jpg' />
+        </div>
+
         <div className={style.body}>{ReactHtmlParser(job.content)}</div>
         <div>
           <span className={style.wrapper}>
