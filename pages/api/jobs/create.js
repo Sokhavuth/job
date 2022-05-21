@@ -30,9 +30,8 @@ export default async (req, res) => {
     job.link = req.body.link
   }
   
-  await jobSchema.deleteMany({enddate:{$lt:new Date()}}).limit(200)
   const _job = await job.save()
-
+  await jobSchema.deleteMany({enddate:{$lt:new Date()}})
 
   res.json({ job: _job })
 }
