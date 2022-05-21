@@ -20,7 +20,8 @@ const allowCors = fn => async (req, res) => {
 const handler = async (req, res) => {
   const jobSchema = await schema()
   const amount = parseInt(req.query.amount)
-  var jobs = await jobSchema.aggregate([ {$match: {enddate: {$gte: new Date()}}}, {$sample:{size: amount}} ])
+  var jobs = await jobSchema.aggregate([{$match: {enddate: {$gte: new Date()}}}, {$sample:{size: amount}} ])
+  await jobSchema.deleteMany({enddate:{$lt:new Date()}}).limit(200)
   
   res.json({ jobs: jobs })
 }
