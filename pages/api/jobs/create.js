@@ -8,9 +8,14 @@ export default async (req, res) => {
   const postdate = new Date(req.body.postDate)
   const enddate = new Date(req.body.endDate)
   let categories = req.body.categories
-  categories = categories.replace(/ /g, '')
+  //categories = categories.replace(/ /g, '')
   categories = categories.split(',')
-  categories.pop()
+  //categories.pop()
+  let labels = categories.map((label)=>{
+      return label.trim()
+  })
+
+  categories = labels  
   
   if (!(req.body.id)){
     id = (new Date()).getTime().toString(36) + Math.random().toString(36).slice(2)
