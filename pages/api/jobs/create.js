@@ -8,14 +8,12 @@ export default async (req, res) => {
   const postdate = new Date(req.body.postDate)
   const enddate = new Date(req.body.endDate)
   let categories = req.body.categories
-  //categories = categories.replace(/ /g, '')
   categories = categories.split(',')
-  //categories.pop()
   let labels = categories.map((label)=>{
       return label.trim()
   })
 
-  categories = labels  
+  categories = labels 
   
   if (!(req.body.id)){
     id = (new Date()).getTime().toString(36) + Math.random().toString(36).slice(2)
@@ -36,7 +34,7 @@ export default async (req, res) => {
   }
   
   const _job = await job.save()
-  await jobSchema.deleteMany({enddate:{$lt:new Date()}})
+  await jobSchema.deleteMany({enddate:{$lte:new Date()}})
 
   res.json({ job: _job })
 }
